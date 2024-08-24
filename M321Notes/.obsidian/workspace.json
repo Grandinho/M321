@@ -18,8 +18,57 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "4b2b77aac0214546",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Kubernetes/1. Kubernetes.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c606885ad8c332b8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Kubernetes/3. Components.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e49f0bad1d5822fa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Kubernetes/4. Storage.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "6d0f01a790abdd75",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Kubernetes/5. Architecture.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -85,7 +134,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Connections.md",
+                "file": "Kubernetes/5. Architecture.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +151,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Connections.md",
+                "file": "Kubernetes/5. Architecture.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +174,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Connections.md"
+                "file": "Kubernetes/5. Architecture.md"
               }
             }
           }
@@ -146,8 +195,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8429d5febde5fad7",
+  "active": "93ad355e462f4e86",
   "lastOpenFiles": [
-    "Connections.md"
+    "Kubernetes/4. Storage.md",
+    "Kubernetes/5. Architecture.md",
+    "Connections.md",
+    "Kubernetes/3. Components.md",
+    "Kubernetes/1. Kubernetes.md",
+    "Kubernetes/2. Installation.md",
+    "Kubernetes"
   ]
 }
