@@ -71,11 +71,9 @@
             "id": "087d9bc7037a6556",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "Kubernetes/6. Commands.md",
-                "mode": "source",
-                "source": false
+                "file": "Permastore.pdf"
               }
             }
           }
@@ -146,7 +144,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Kubernetes/6. Commands.md",
+                "file": "Permastore.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -163,7 +161,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Kubernetes/6. Commands.md",
+                "file": "Permastore.pdf",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -186,7 +184,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Kubernetes/6. Commands.md"
+                "file": "Permastore.pdf"
               }
             }
           }
@@ -209,9 +207,9 @@
   },
   "active": "087d9bc7037a6556",
   "lastOpenFiles": [
+    "Kubernetes/6. Commands.md",
     "Permastore.pdf",
     "Connections.md",
-    "Kubernetes/6. Commands.md",
     "Kubernetes/5. Architecture.md",
     "Kubernetes/1. Kubernetes.md",
     "Kubernetes/4. Storage.md",
