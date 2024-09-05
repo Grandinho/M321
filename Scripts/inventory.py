@@ -28,7 +28,7 @@ def switch(x,y,x1,y1):
 
 def move_to_bottom():
     for x in range(12):
-        for y in range(9):
+        for y in range(10):
             inventory = get_inventory()
             if str(inventory[y][x]) != 'None':
                 print(inventory[y][x])
@@ -46,5 +46,4 @@ def get_inventory():
     structure = json.loads(response.content)
     return structure["hold"]
 
-# move_to_bottom()
 

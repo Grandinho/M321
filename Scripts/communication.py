@@ -81,6 +81,20 @@ def move_to_cordinates(x,y):
     response = requests.post(move_url, json_data)
    
     print(response.json())
+
+def move_to_architect_colony():
+    move_url = "http://192.168.100.15:2009/set_target"
+    station_data = {
+        "target": {
+            "x": -48911,
+            "y": -49878
+        }
+    }
+   
+    json_data = json.dumps(station_data)
+    response = requests.post(move_url, json_data)
+   
+    print(response.json())
    
 def get_free_storage():
     storage_url = "http://192.168.100.15:2012/hold"
@@ -124,8 +138,4 @@ def is_station_in_reach(station_name):
             return True
         else:
             return False
-
-
-# while True:
-#     farm_money_with_silver()
    

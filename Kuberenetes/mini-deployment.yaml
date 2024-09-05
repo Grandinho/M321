@@ -22,9 +22,9 @@ spec:
           ports:
             - containerPort: 2016
           env:
-            - name: MINIO_ACCESS_KEY
+            - name: MINIO_ROOT_USER
               value: "theship"
-            - name: MINIO_SECRET_KEY
+            - name: MINIO_ROOT_PASSWORD
               value: "theship1234"
           volumeMounts:
             - name: minio-data
