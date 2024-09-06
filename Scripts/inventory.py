@@ -1,21 +1,6 @@
 import requests
 import json
 
-inventory = [['i','i','i','i','i','i','i','i','i','i','i'],
-             ['','','','','','','','','','',''],
-             ['','','','','','','','','','',''],
-             ['','','','','','','','','','',''],
-             ['','','','','','','','','','',''],
-             ['','','','','','','','','','',''],
-             ['','','','','','','','','','',''],
-             ['','','','','','','','','','',''],
-             ['','','','','','','','','','','']]
-
-def switch_local(x,y,x1,y1):
-    inventoryTemp = inventory[y][x]
-    inventory[y][x] = inventory[y1][x1]
-    inventory[y1][x1] = inventoryTemp
-
 def switch(x,y,x1,y1):
     data = {
         "a": {"x": x, "y": y}, 
@@ -46,4 +31,21 @@ def get_inventory():
     structure = json.loads(response.content)
     return structure["hold"]
 
+inventory = get_inventory()
+rows = len(inventory)
+columns = len(inventory[0])
+steps = 0
 
+while True:
+    for x in range(columns-1):
+        step = 0
+        for y in range(rows-1,-1,-1):
+            if str(inventory[y][x]) == 'None':
+                steps += 1
+            else:
+                # print(inventory[y][0])
+                if steps > 0:
+                    # print(y)
+                    for step in range(1,steps+1,1):
+                        switch(x,y+step-1,x,y+step)
+                    steps = 0
