@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: minio-flask-app
-        image: minio-flask-app:latest 
+        image: grand5120/minio-flask-app:latest  # Make sure this matches your Docker image name
         ports:
         - containerPort: 2023
         env:
@@ -36,3 +36,5 @@ spec:
   ports:
     - port: 2023
       targetPort: 2023
+  externalIPs:
+    - 192.168.100.15

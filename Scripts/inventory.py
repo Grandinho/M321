@@ -46,5 +46,5 @@ def get_inventory():
     structure = json.loads(response.content)
     return structure["hold"]
 
-while True:
-    move_to_bottom()
+# while True:
+#     move_to_bottom()
