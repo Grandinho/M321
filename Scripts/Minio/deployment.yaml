@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio-flask-app
+  labels:
+    app: minio-flask-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio-flask-app
+  template:
+    metadata:
+      labels:
+        app: minio-flask-app
+    spec:
+      containers:
+      - name: minio-flask-app
+        image: minio-flask-app:latest 
+        ports:
+        - containerPort: 2023
+        env:
+        - name: FLASK_RUN_HOST
+          value: "0.0.0.0"
+        - name: FLASK_RUN_PORT
+          value: "2023"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio-flask-app-service
+spec:
+  type: NodePort
+  selector:
+    app: minio-flask-app
+  ports:
+    - port: 2023
+      targetPort: 2023
