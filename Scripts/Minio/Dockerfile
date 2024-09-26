@@ -8,7 +8,7 @@ WORKDIR /app
 COPY ./app /app
 
 # Install any needed packages specified in requirements.txt
-RUN pip install Flask Minio requests pyyaml
+RUN pip install Flask Minio requests pyyaml websockets
 
 # Make port 2023 available to the world outside this container
 EXPOSE 2023

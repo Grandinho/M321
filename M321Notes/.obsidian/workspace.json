@@ -78,9 +78,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "dbfb973b762bb7f4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Docker build and kub.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -146,7 +158,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Kubernetes/6. Commands.md",
+                "file": "Docker build and kub.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -163,7 +175,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Kubernetes/6. Commands.md",
+                "file": "Docker build and kub.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -186,7 +198,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Kubernetes/6. Commands.md"
+                "file": "Docker build and kub.md"
               }
             }
           }
@@ -207,11 +219,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "087d9bc7037a6556",
+  "active": "dbfb973b762bb7f4",
   "lastOpenFiles": [
+    "Kubernetes/6. Commands.md",
+    "Docker build and kub.md",
     "Connections.md",
     "Kubernetes/5. Architecture.md",
-    "Kubernetes/6. Commands.md",
     "Kubernetes/3. Components.md",
     "Kubernetes/2. Installation.md",
     "Kubernetes/1. Kubernetes.md",

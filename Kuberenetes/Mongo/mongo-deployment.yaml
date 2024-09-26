@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-db
+  labels:
+    app: mongo-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-db
+  template:
+    metadata:
+      labels:
+        app: mongo-db
+    spec:
+      containers:
+      - name: mongo-db
+        image: mongo
+        ports:
+        - containerPort: 2021
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongo-creds
+              key: username
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongo-creds
+              key: password
+        - name: MONGO_INITDB_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: mongo-creds
+              key: db
+      volumes:
+        - name: mongo-data
+          persistentVolumeClaim:
+            claimName: mongo-db-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-db-service
+spec:
+  type: NodePort
+  selector:
+    app: mongo-db
+  ports:
+    - port: 2021
+      targetPort: 27017
+  externalIPs:
+    - 192.168.100.15

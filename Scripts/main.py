@@ -1,6 +1,13 @@
+# import inventory
 import communication
+import thruster
+communication.move_to_cordinates(-83425.0,-98010)
+# )
 
-communication.move_to_cordinates(7154,-3520)
+# thruster.set_to_idle()
+
+# while True:
+#     inventory.move_to_bottom()
 # while True:
 #     communication.buy_ressource("Shangris Station","GOLD",12)
 #     inventory.move_to_bottom()
