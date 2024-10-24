@@ -3,6 +3,8 @@ from websockets.sync.client import connect
 import json
 import requests
 import base64
+from typing import List, Tuple
+import xmlrpc.client
 
 
 app = Flask(__name__)
@@ -19,11 +21,32 @@ def receive(station):
             payload = receive_from_elyse()
         case "Zurro Station":
             payload = receive_from_zurro()
+        case "Station 15-A":
+            payload = receive_from_15A()
+        # dummy
+        case "Illume Colony": 
+            payload = receive_from_core()
 
     return payload
 
+def receive_from_15A() -> List[Tuple[str, bytearray]]:
+    server = xmlrpc.client.ServerProxy(" http://192.168.100.15:2034/RPC2")
+    result = server.receive()
+    messages = []
+    for msg in result:
+        # print(msg[0])
+        # list(msg[1])¨
+        messages.append({"destination": msg[0],"data": list(bytearray(msg[1].data))})
+        
+    response_data = {
+        "kind": "success",
+        "messages": messages
+    }
+    
+    return response_data
+
 def receive_from_azura():
-    response = requests.post('http://192.168.100.15:2030/receive')
+    response = requests.get('http://192.168.100.15:2030/messages_for_other_stations')
     payload = json.loads(response.content)
     
     # Extract the Base64 encoded message
@@ -127,21 +150,21 @@ def bytes_to_base64(byte_list):
 
 @app.route('/<station>/send', methods=['POST'])
 def send(station):
+    print(station)
     match station:
         case "Azura Station":
-            payload = send_to_azura(request.json)
+            payload = send_to_azura(request.get_json(force=True))
         case "Core Station":
-            payload = send_to_core(request.json)
+            payload = send_to_core(request.get_json(force=True))
         case "Elyse Terminal":
-            payload = send_to_elyse(request.json)
+            payload = send_to_elyse(request.get_json(force=True))
         case "Zurro Station":
-            payload = send_to_zurro(request.json)
+            payload = send_to_zurro(request.get_json(force=True))
     return payload
 
-def send_to_azura():
-    request_data = request.json
+def send_to_azura(request):
+    request_data = request
     # Get data from the request
-    request_data = request.json
     sender = request_data['source']
     data = request_data['data']
     msg_as_bytes = bytes_to_base64(data)
@@ -151,29 +174,34 @@ def send_to_azura():
         "sending_station": sender,
         "base64data": msg_as_bytes
     }
-    response = requests.post('http://192.168.100.15:2030/put_message',payload)
-    return jsonify({"kind": "success"})
+    response = requests.post('http://192.168.100.15:2030/put_message',json=payload)
+    if response.status_code == 200:
+        print(response.content)
+        return jsonify({"kind": "success"})
+    return response.content, 400
 
-def send_to_core():
-    request_data = request.json
+def send_to_core(request):
+    request_data = request
     # Get data from the request
-    request_data = request.json
     sender = request_data['source']
     data = request_data['data']
     msg_as_bytes = bytes_to_base64(data)
 
     # Generate a unique object name for this station's data
     payload = {
-        "sending_station": sender,
-        "base64data": msg_as_bytes
+        "source": sender,
+        "message": msg_as_bytes
     }
-    response = requests.post('http://192.168.100.15:2027/put_message',payload)
-    return jsonify({"kind": "success"})
+    response = requests.post('http://192.168.100.15:2027/send',json=payload)
+    if response.status_code == 200:
+        print(response.content)
+        return jsonify({"kind": "success"})
+    print(payload)
+    return response.content, 400
 
-def send_to_elyse():
-    request_data = request.json
+def send_to_elyse(request):
+    request_data = request
     # Get data from the request
-    request_data = request.json
     sender = request_data['source']
     data = request_data['data']
     msg_as_bytes = bytes_to_base64(data)
@@ -194,10 +222,9 @@ def send_to_elyse():
 
 
 
-def send_to_zurro():
-    request_data = request.json
+def send_to_zurro(request):
+    request_data = request
     # Get data from the request
-    request_data = request.json
     sender = request_data['source']
     data = request_data['data']
     msg_as_bytes = bytes_to_base64(data)
@@ -207,7 +234,7 @@ def send_to_zurro():
         "sending_station": sender,
         "base64data": msg_as_bytes
     }
-    response = requests.post('http://192.168.100.15:2029/put_message',payload)
+    response = requests.post('http://192.168.100.15:2029/put_message',json=payload)
     return jsonify({"kind": "success"})
 
 if __name__ == '__main__':

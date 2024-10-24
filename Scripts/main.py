@@ -1,7 +1,7 @@
 # import inventory
 import communication
 import thruster
-communication.move_to_cordinates(-83425.0,-98010)
+communication.move_to_cordinates(10803,-15702)
 # )
 
 # thruster.set_to_idle()

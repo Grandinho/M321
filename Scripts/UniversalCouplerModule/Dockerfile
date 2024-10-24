@@ -4,11 +4,11 @@ FROM python:3.10-slim
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY ./app /app
-
 # Install any needed packages specified in requirements.txt
 RUN pip install Flask Minio requests pyyaml websockets
+
+# Copy the current directory contents into the container at /app
+COPY ./app /app
 
 # Make port 2023 available to the world outside this container
 EXPOSE 2023
