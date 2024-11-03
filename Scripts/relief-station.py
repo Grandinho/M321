@@ -9,7 +9,9 @@ def get_random_string(length):
     result_str = ''.join(random.choice(letters) for i in range(length))
     return result_str
 
-
+# shieldgenerator = ShieldGeneratorDB()
+# shieldgenerator.connect()
+# print(shieldgenerator.get_vacuum_energy_data())
 while True:
     time.sleep(2)
     id = get_random_string(10)
@@ -22,6 +24,7 @@ while True:
     print(f"result: {result}")
     shieldgenerator = ShieldGeneratorDB()
     shieldgenerator.connect()
+    print(shieldgenerator.get_vacuum_energy_data())
     shieldgenerator.update_vacuum_energy_data(result)
     v.delete_request()
     # v.triger_measurement()

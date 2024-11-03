@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sensor-void-energy-server
+  labels:
+    app: sensor-void-energy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sensor-void-energy
+  template:
+    metadata:
+      labels:
+        app: sensor-void-energy
+    spec:
+      containers:
+      - name: grpc-server
+        image: grand512/grpc-sensor-server:latest
+        ports:
+        - containerPort: 2102
+        resources:
+          requests:
+            memory: "64Mi"
+          limits:
+            memory: "128Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sensor-void-energy-service
+spec:
+  type: NodePort
+  selector:
+    app: sensor-void-energy
+  ports:
+  - port: 2102
+    targetPort: 2102
+  externalIPs:
+    - 192.168.100.15
