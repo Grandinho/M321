@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sensor-atomic-energy-server
+  labels:
+    app: sensor-atomic-energy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sensor-atomic-energy
+  template:
+    metadata:
+      labels:
+        app: sensor-atomic-energy
+    spec:
+      containers:
+      - name: sensor-atomic-energy-server
+        image: grand512/m321-matter-stabiliser-server
+        ports:
+        - containerPort: 2101
+        resources:
+          requests:
+            memory: "64Mi"
+          limits:
+            memory: "128Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sensor-atomic-energy-service
+spec:
+  type: NodePort
+  selector:
+    app: sensor-atomic-energy
+  ports:
+  - port: 2101
+    targetPort: 2101
+  externalIPs:
+    - 192.168.100.15
